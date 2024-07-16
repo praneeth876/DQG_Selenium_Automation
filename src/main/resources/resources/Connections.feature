@@ -1,4 +1,4 @@
-Feature: Verify the Connections module functionalities
+gitFeature: Verify the Connections module functionalities
 
   Background:
     Given Navigate to the DQG login page
