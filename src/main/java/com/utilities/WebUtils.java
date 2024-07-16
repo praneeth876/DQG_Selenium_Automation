@@ -3,13 +3,19 @@ package com.utilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.beans.Visibility;
+import java.time.Duration;
 import java.util.Set;
 
 public class WebUtils {
 WebDriver driver;
 Select select;
+WebDriverWait wait;
    // WebUtils webUtils;
 //Actions actions;
     //Creating a constructor to initialize driver
@@ -60,9 +66,37 @@ public void keyBoardOperations(String keyboardButtonName){
             }
         }
     }
+    public void updateElementValue(WebElement element,String text) {
+        String attributeValue = element.getAttribute("value");
+        if (attributeValue != null) {
+            element.clear();
+        } else {
+            element.sendKeys(text);
+        }
+    }
+    public String getElementText(WebElement element){
+      return  element.getText();
+    }
+    public String getElementAttribute(WebElement element,String attribute){
+        return  element.getAttribute(attribute);
+    }
+    public void sendText(WebElement element,String text){
+          element.sendKeys(text);
+    }
 
-    //click element using javaScript
-
+    public void updateElementText(WebElement element,String text){
+          if(element.getAttribute("value")!=null){
+              element.clear();
+              element.sendKeys(text);
+          }
+    }
+    public void clickOnElement(WebElement element){
+        element.click();
+    }
+    public void waitUntilElementVisible(WebElement element){
+     wait=new WebDriverWait(driver, Duration.ofSeconds(10));
+     wait.until(ExpectedConditions.visibilityOf(element));
+    }
 
 
 

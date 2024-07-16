@@ -3,6 +3,7 @@ package com.pages;
 import com.Config.ReadConfig;
 import com.DriverManagers.DriverManager;
 import com.Enum.Browsers;
+import com.Enum.URL;
 import com.baseClass.BasePage;
 import com.utilities.DriverUtils;
 import io.cucumber.java.After;
@@ -13,6 +14,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -20,30 +22,39 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+
+
 public class Hooks extends BasePage {
-    public static WebDriver driver;
+   // public static WebDriver driver;
     @Before
-    public void setUp(Scenario scenario) {
+    public void setUp() {
 
-        ReadConfig.loadFile();
-        Browsers browser = ReadConfig.getBrowser();
-        String URL=ReadConfig.getUrl();
-
+        //ReadConfig.loadFile();
+//        Browsers browser = ReadConfig.getBrowser();
+//        System.out.println(browser);
+String browser="FIREFOX";
         switch (browser) {
-            case EDGE:
+            case "EDGE" :
                 WebDriverManager.edgedriver().setup();
-                driver=new EdgeDriver();
-                driver.navigate().to(URL);
-            case CHROME:
+                driver = new EdgeDriver();
+                driver.manage().window().maximize();
+                break;
+
+        case "CHROME" :
                 WebDriverManager.chromedriver().setup();
-                driver=new ChromeDriver();
-                driver.navigate().to(URL);
-            case FIREFOX:
-                WebDriverManager.firefoxdriver().setup();
-                driver=new FirefoxDriver();
-                driver.navigate().to(URL);
+                ChromeOptions opt = new ChromeOptions();
+                opt.addArguments("[--remote-allow-origins=*]");
+                driver = new ChromeDriver(opt);
+                break;
+
+            case "FIREFOX" :
+                WebDriverManager.firefoxdriver().driverVersion("0.34.0").setup();
+                driver = new FirefoxDriver();
+                System.out.println("Inside firefox");
+                break;
+            }
         }
-    }
+
 
 
 //
@@ -51,9 +62,8 @@ public class Hooks extends BasePage {
 //        driver.manage().deleteAllCookies();
     //super.setUp();
 
-
     @After
-    public void tearDown(Scenario scenario) throws IOException {
+    public void tearDown() throws IOException {
 
 //        if(scenario.isFailed()) {
 //            byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
@@ -61,7 +71,7 @@ public class Hooks extends BasePage {
 //            FileOutputStream fileOut = new FileOutputStream(file);
 //            fileOut.write(screenshot);
 //        }
-
+//driver.close();
 
     }
 

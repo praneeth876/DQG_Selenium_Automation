@@ -13,7 +13,6 @@ public class JavaScriptUtils {
        // this.driver=driver;
         this.js=(JavascriptExecutor)driver;
     }
-
     public void clickOnElement(WebElement element){
        // js=((JavascriptExecutor)driver);
         js.executeScript("arguments[0].click();",element);
@@ -25,9 +24,7 @@ public class JavaScriptUtils {
     public void getPageTitle(){
         // js=((JavascriptExecutor)driver);
          js.executeScript("return document.title");
-
     }
-
     public void srollByCordinates(int start,int end){
         //js=((JavascriptExecutor)driver);
         js.executeScript("window.scrollTo("+start+","+end+")");
@@ -42,7 +39,5 @@ public class JavaScriptUtils {
        // js=((JavascriptExecutor)driver);
         js.executeScript("arguments[0].style.border='3px solid red'",element);
     }
-
-
 
 }

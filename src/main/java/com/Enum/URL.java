@@ -1,8 +1,8 @@
 package com.Enum;
 
-public enum Context {
+public enum URL {
 
-    CONNECTION_NAME;
+    DQGURL;
 
     public String value;
 
@@ -13,7 +13,5 @@ public enum Context {
     public String getValue() {
         return value;
     }
-//    Context(String value){
-//        this.value=value;
-//    };
+
 }
