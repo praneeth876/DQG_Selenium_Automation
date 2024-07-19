@@ -10,9 +10,7 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -32,7 +30,7 @@ public class Hooks extends BasePage {
         //ReadConfig.loadFile();
 //        Browsers browser = ReadConfig.getBrowser();
 //        System.out.println(browser);
-String browser="FIREFOX";
+String browser="EDGE";
         switch (browser) {
             case "EDGE" :
                 WebDriverManager.edgedriver().setup();
@@ -50,7 +48,6 @@ String browser="FIREFOX";
             case "FIREFOX" :
                 WebDriverManager.firefoxdriver().driverVersion("0.34.0").setup();
                 driver = new FirefoxDriver();
-                System.out.println("Inside firefox");
                 break;
             }
         }
@@ -63,15 +60,21 @@ String browser="FIREFOX";
     //super.setUp();
 
     @After
-    public void tearDown() throws IOException {
+    public void tearDown(Scenario scenario) throws IOException, InterruptedException {
 
-//        if(scenario.isFailed()) {
-//            byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-//            File file = new File(System.getProperty("user.dir") + "\\Screenshots\\Defects.png");
-//            FileOutputStream fileOut = new FileOutputStream(file);
-//            fileOut.write(screenshot);
-//        }
-//driver.close();
+        WebElement account=driver.findElement(By.cssSelector("[class='MuiBox-root css-i9gxme'] [data-testid='PersonIcon']"));
+        account.click();
+Thread.sleep(2000);
+        WebElement logout=driver.findElement(By.xpath("//*[text()='Logout']"));
+        logout.click();
+
+        if(scenario.isFailed()) {
+            byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+            File file = new File(System.getProperty("user.dir") + "\\Screenshots\\Defects.png");
+            FileOutputStream fileOut = new FileOutputStream(file);
+            fileOut.write(screenshot);
+        }
+driver.close();
 
     }
 

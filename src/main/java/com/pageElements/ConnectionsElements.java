@@ -8,13 +8,13 @@ import java.util.List;
 public class ConnectionsElements {
 
 
-    @FindBy(css="[id='email']")
+    @FindBy(css = "[id='email']")
     public WebElement emailField;
 
-    @FindBy(css="[name='password']")
+    @FindBy(css = "[name='password']")
     public WebElement passwordField;
 
-    @FindBy(xpath="//button[text()='Sign In']") //[type='submit']
+    @FindBy(xpath = "//button[text()='Sign In']") //[type='submit']
     public WebElement signInBtn;
 
     @FindBy(css = "[class='MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-13zle66']")
@@ -22,50 +22,50 @@ public class ConnectionsElements {
 
     @FindBy(xpath = "//*[text()='Confirm']")
     public WebElement confirmBtn;
-    @FindBy(css="[class='MuiTypography-root MuiTypography-h6 upper-case css-10k2nzz']")
+    @FindBy(css = "[class='MuiTypography-root MuiTypography-h6 upper-case css-10k2nzz']")
     public WebElement dashBoardPageHeader;
-    @FindBy(css="[class='center MuiBox-root css-1o817yz']")
+    @FindBy(css = "[class='center MuiBox-root css-1o817yz']")
     public WebElement allConnections;
-    @FindBy(tagName="img")
+    @FindBy(tagName = "img")
     public List<WebElement> lstConnectionImages;
 
 
-    @FindBy(xpath="//*[text()='Add new']")
+    @FindBy(xpath = "//*[text()='Add new']")
     public WebElement addNewBtn;
 
-    @FindBy(css="[class='MuiTypography-root MuiTypography-h6 css-52kepn']")
+    @FindBy(css = "[class='MuiTypography-root MuiTypography-h6 css-52kepn']")
     public WebElement PgHeader;
-    @FindBy(css="[name='connectionName']")
+    @FindBy(css = "[name='connectionName']")
     public WebElement conectNameEle;
 
-    @FindBy(css="[name='server']")
+    @FindBy(css = "[name='server']")
     public WebElement serverELe;
 
-    @FindBy(css="[name='dataBase']")
+    @FindBy(css = "[name='dataBase']")
     public WebElement datBaseEle;
 
-    @FindBy(xpath="(//*[@class='MuiGrid-root MuiGrid-container MuiGrid-item css-tyuwup'] //*[@aria-haspopup=\"listbox\"])[1]")
+    @FindBy(xpath = "(//*[@class='MuiGrid-root MuiGrid-container MuiGrid-item css-tyuwup'] //*[@aria-haspopup=\"listbox\"])[1]")
     public List<WebElement> AuthTypeDrpdwn;
 
-    @FindBy(css="[name='user']")
+    @FindBy(css = "[name='user']")
     public WebElement userEle;
 
 
-    @FindBy(css="[name='password']")
+    @FindBy(css = "[name='password']")
     public WebElement passEle;
 
-    @FindBy(xpath="//button[contains(text(),'Test')]")
+    @FindBy(xpath = "//button[contains(text(),'Test')]")
     public WebElement testAndCreateBtn;
 
-    @FindBy(css="[role='alert']")
+    @FindBy(xpath = "//*[@role='presentation']//*[@role='alert']")
     public WebElement alertPopUp;
-    @FindBy(xpath="//*[contains(@class,'MuiAlert-message ')]")
+    @FindBy(xpath = "//*[@role='alert']//*[contains(@class,'MuiAlert-message ')]")
     public WebElement alertPopUpMsg;
 
-    @FindBy(css="[data-testid='CancelOutlinedIcon']")
+    @FindBy(css = "[data-testid='CancelOutlinedIcon']")
     public WebElement cancelIcon;
 
-    @FindBy(css ="[id='demo-simple-select']")
+    @FindBy(css = "[id='demo-simple-select']")
     public WebElement pgeComboBox;
 
     @FindBy(css = "[role='option']")
@@ -74,7 +74,7 @@ public class ConnectionsElements {
 //    @FindBy(css ="[col-id='connectionName'][role='gridcell']")
 //    public List<WebElement> lstConnectNames;
 
-    @FindBy(css ="[col-id='connectionName'][role='gridcell'] [class='MuiBox-root css-38iob1']")
+    @FindBy(css = "[col-id='connectionName'][role='gridcell'] [class='MuiBox-root css-38iob1']")
     public List<WebElement> lstConnectNames;
 
     @FindBy(xpath = "//*[text()='Edit']")
@@ -85,9 +85,60 @@ public class ConnectionsElements {
     @FindBy(css = "[class='ag-selection-checkbox'] [type='checkbox']")
     public List<WebElement> contNameChkBoxs;
 
-@FindBy(css = "[aria-label='Delete']")
+    @FindBy(css = "[aria-label='Delete']")
     public WebElement deleteIcon;
     @FindBy(xpath = "//*[text()='Yes']")
     public WebElement yesDltBtn;
 
+    @FindBy(css = "[aria-label='Preview'] [fill='none']")
+    public List<WebElement> previewIcon;
+
+    @FindBy(xpath = "(//*[contains(@class,'titleItem')]//p)[2]")
+    public WebElement dbConnTitle;
+
+    @FindBy(css = "[class='prevConTableList MuiBox-root css-0'] [class='MuiTypography-root MuiTypography-body1 css-136foal']")
+    public List<WebElement> tablesList;
+
+    @FindBy(xpath = "//*[@id='enhanced-table-acordian-0']//b")
+    public WebElement sltdTableTitle;
+
+    @FindBy(css = "[role='button'] [type='button']")
+    public WebElement validateBtn;
+
+    @FindBy(css = "[class='MuiFormLabel-asterisk MuiInputLabel-asterisk Mui-error css-sp68t1']")
+    public List<WebElement> starIcon;
+
+    @FindBy(xpath = "//*[contains(@class,'css-l10032') ]")
+    public List<WebElement> listOfFields;
+
+    @FindBy(xpath = "//*[contains(@class,'MuiFormHelperText-root Mui-error')]")
+    public WebElement helpText;
+
+    @FindBy(css = "[name='ruleName']")
+    public WebElement ruleNameEle;    //enter text
+    @FindBy(xpath = "//*[text()=' Add Column']")
+    public WebElement addColumn;   //click
+    @FindBy(css = "[class='MuiTableCell-root MuiTableCell-body MuiTableCell-alignLeft MuiTableCell-sizeMedium css-1iyeb4d']")
+    public List<WebElement> columnNameList;  //reference to select column
+    @FindBy(xpath = "//*[contains(@class,'MuiTable-root MuiTable-stickyHeader')]//*[@type='checkbox']")
+    public List<WebElement> chkBoxColName;  //check checkbox
+    @FindBy(xpath = "//*[@data-testid='CancelOutlinedIcon']")
+    public WebElement cancelIconOnTablPopUp; //click
+
+    @FindBy(xpath = "//*[contains(@class,'MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1')]")
+    public WebElement sltColNames;   //validate
+    @FindBy(css = "[role='button'] [class='v-center MuiBox-root css-8atqhb']")
+    public List<WebElement> listOfDragValCks;    //select value check dropdown
+    @FindBy(xpath = "//*[text()='Drop here']")
+    public WebElement dropEle;   //drop selected check
+
+    @FindBy(css = "[class='dragItemsList']")
+    public WebElement sltChecksList;   //validate
+    @FindBy(xpath = "//*[text()='Create Rule']")
+    public WebElement createRule; //click
+
+    @FindBy(xpath = "//*[@role='gridcell' and @col-id='TestName']")
+    public List<WebElement> dqRuleNameColList;
+    @FindBy(xpath = "//*[@role='gridcell' and @col-id='ConnectionName']")
+    public List<WebElement> conntNameColList;
 }

@@ -16,9 +16,6 @@ public ConnectionsPage connectionspage;
 //
     public ConnectionsPage getConnectionspage()
     {
-        if(driver==null){
-            System.out.println("driver is NULL");
-        }
 
         return (connectionspage==null) ? (connectionspage=new ConnectionsPage(driver)) : connectionspage;
     }

@@ -1,9 +1,9 @@
 package com.stepDefinitions;
 
-import com.Config.ReadConfig;
+//import com.Config.ReadConfig;
 import com.baseClass.BasePage;
 import com.pages.ConnectionsPage;
-import com.pages.Hooks;
+//import com.pages.Hooks;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -82,8 +82,8 @@ public class ConnectionsStepDefs {
 
     }
     @Then("Validate {string} popup message is displaying")
-    public void validate_popup_message_is_displaying(String popUpMsg) throws InterruptedException {
-connectionspage.verifyPopUpMessage(popUpMsg);
+    public void validate_popup_message_is_displaying(String popUpMsgFromFeature) throws InterruptedException {
+        connectionspage.verifyPopUpMessage(popUpMsgFromFeature);
     }
     @Then("Click on close icon to display created connections")
     public void click_on_close_icon_to_display_created_connections() {
@@ -123,38 +123,77 @@ connectionspage.clickOnTestAndUpdate();
     public void validate_deleted_connection_is_present_in_the_connection_name_column() throws InterruptedException {
         connectionspage.validateDeletedConnectionNameIsPresentInAllConnectionsTable();
     }
-
-
-
-
-
-
-
     @Then("Click on {string} connection preview icon")
-    public void click_on_connection_preview_icon(String string) {
-
+    public void click_on_connection_preview_icon(String cntNameToPreview) throws InterruptedException {
+connectionspage.clickOnPreviewButtonOfSelectedConnection(cntNameToPreview);
     }
     @Then("Validate selected connection database tables are displayed on new Page")
-    public void validate_selected_connection_database_tables_are_displayed_on_new_page() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    public void validate_selected_connection_database_tables_are_displayed_on_new_page() throws InterruptedException {
+      connectionspage.verifySelectedConnectionDetailsAreDisplayed();
     }
     @Then("Click on {string} table in the tables list")
-    public void click_on_table_in_the_tables_list(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    public void click_on_table_in_the_tables_list(String table) {
+connectionspage.selectTableFromTablesList(table);
     }
     @Then("Validate selected table data is displayed")
-    public void validate_selected_table_data_is_displayed() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    public void validate_selected_table_data_is_displayed() throws InterruptedException {
+        connectionspage.verifySelectedTableDetailsAreDisplayed();
     }
     @Then("Click on Validate button")
     public void click_on_validate_button() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+      connectionspage.clickOnValidateButton();
     }
 
+    @Then("Validate fields displays {string} border color with empty data and display empty field names which are manditory")
+    public void validate_fields_displays_border_color_with_empty_data_and_display_empty_field_names_which_are_manditory(String style) throws InterruptedException {
+        connectionspage.validateRedColorIsHighLightingOnEmptyFields(style);
+    }
 
+    @Then("Validate connection name field displays error help text with invalid data")
+    public void validate_connection_name_field_displays_error_help_text_with_invalid_data() {
+        connectionspage.verifyHelpTextIsDisplayed();
+    }
+
+    @Then("Update {string} rule name in rule name field")
+    public void update_rule_name_in_rule_name_field(String ruleName) {
+connectionspage.enterRuleName(ruleName);
+    }
+    @Then("Click on add column button")
+    public void click_on_add_column_button() {
+        connectionspage.clickOnAddColumnButton();
+    }
+    @Then("Select {string} column from the table by checking checkbox in column table popUp")
+    public void select_column_from_the_table_by_checking_checkbox_in_column_table_pop_up(String columnName) {
+        connectionspage.selectColumnsFromTableList(columnName);
+    }
+    @Then("Click on cancel Icon on column table popUp")
+    public void click_on_cancel_icon_on_column_table_pop_up() {
+        connectionspage.clickOnCancelIconOnAddColumPopUp();
+    }
+    @Then("validate selected column is added")
+    public void validate_selected_column_is_added() {
+        connectionspage.validateSelectedColumnIsPresentInColumnSection();
+    }
+    @Then("Select {string} from value checks dropdown under DQ Rule section and drop it to drop here in Rule section")
+    public void select_from_value_checks_dropdown_under_dq_rule_section_and_drop_it_to_drop_here_in_rule_section(String checkName) throws InterruptedException {
+        connectionspage.selectChecksInValCheck(checkName);
+    }
+    @Then("Validate selected rule is added")
+    public void validate_selected_rule_is_added() {
+        connectionspage.validateSelectedCheckIsPresentInRuleSection();
+    }
+    @Then("Click on Create Rule button")
+    public void click_on_create_rule_button() throws InterruptedException {
+        connectionspage.clickOnCreateRuleButton();
+    }
+    @Then("Validate created rule is present in Rule list in DQ Rules page")
+    public void validate_created_rule_is_present_in_rule_list_in_dq_rules_page() throws InterruptedException {
+        connectionspage.validateRuleIsCreatedInRuleListForSelectedConnection();
+    }
+
+    @Then("Leave Rule name field empty and validate create rule button is disabled")
+    public void leave_rule_name_field_empty_and_validate_create_rule_button_is_disabled() {
+connectionspage.checkAndValidateRuleNameFieldIsAcceptingEmptyValues();
+    }
 
 }

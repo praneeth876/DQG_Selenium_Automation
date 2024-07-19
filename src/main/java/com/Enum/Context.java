@@ -2,7 +2,9 @@ package com.Enum;
 
 public enum Context {
 
-    CONNECTION_NAME;
+    CONNECTION_NAME,
+    TABLE_NAME,
+    RULE_NAME;
 
     public String value;
 
@@ -13,7 +15,5 @@ public enum Context {
     public String getValue() {
         return value;
     }
-//    Context(String value){
-//        this.value=value;
-//    };
+
 }
