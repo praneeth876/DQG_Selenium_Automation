@@ -190,10 +190,9 @@ connectionspage.enterRuleName(ruleName);
     public void validate_created_rule_is_present_in_rule_list_in_dq_rules_page() throws InterruptedException {
         connectionspage.validateRuleIsCreatedInRuleListForSelectedConnection();
     }
-
-    @Then("Leave Rule name field empty and validate create rule button is disabled")
-    public void leave_rule_name_field_empty_and_validate_create_rule_button_is_disabled() {
-connectionspage.checkAndValidateRuleNameFieldIsAcceptingEmptyValues();
+    @Then("Leave Rule name field empty and validate field displays {string} border color")
+    public void leave_rule_name_field_empty_and_validate_field_displays_border_color(String borderColor) {
+        connectionspage.checkAndValidateRuleNameFieldIsAcceptingEmptyValues(borderColor);
     }
 
 }

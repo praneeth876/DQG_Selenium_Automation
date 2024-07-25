@@ -4,7 +4,8 @@ public enum Context {
 
     CONNECTION_NAME,
     TABLE_NAME,
-    RULE_NAME;
+    RULE_NAME,
+    LANGUAGE;
 
     public String value;
 

@@ -62,19 +62,18 @@ String browser="EDGE";
     @After
     public void tearDown(Scenario scenario) throws IOException, InterruptedException {
 
-        WebElement account=driver.findElement(By.cssSelector("[class='MuiBox-root css-i9gxme'] [data-testid='PersonIcon']"));
-        account.click();
-Thread.sleep(2000);
-        WebElement logout=driver.findElement(By.xpath("//*[text()='Logout']"));
-        logout.click();
-
-        if(scenario.isFailed()) {
-            byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-            File file = new File(System.getProperty("user.dir") + "\\Screenshots\\Defects.png");
-            FileOutputStream fileOut = new FileOutputStream(file);
-            fileOut.write(screenshot);
-        }
-driver.close();
+//        WebElement account=driver.findElement(By.cssSelector("[class='MuiBox-root css-i9gxme'] [data-testid='PersonIcon']"));
+//        account.click();
+//        Thread.sleep(10000);
+//        WebElement logout=driver.findElement(By.xpath("//*[text()='Logout']"));
+//        logout.click();
+//        if(scenario.isFailed()) {
+//            byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+//            File file = new File(System.getProperty("user.dir") + "\\Screenshots\\Defects.png");
+//            FileOutputStream fileOut = new FileOutputStream(file);
+//            fileOut.write(screenshot);
+//        }
+//driver.quit();
 
     }
 

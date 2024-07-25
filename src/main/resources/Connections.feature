@@ -62,13 +62,13 @@ Feature: Verify the Connections module functionalities
 #    Then Validate "Connection test succeeded. Data source updated." popup message is displaying
 #    And Validate created connection is present in the Connection name column
 #
-#    @Regression @Connections
-#    Scenario: Validate added connection name is able to delete
-#    And Select "snowflake" database from connections page
-#    And Check the "demo2" checkbox to delete
-#    And Click on delete icon to delete connection
-#    And Click on yes button on delete confirmation popup
-#    Then Validate deleted connection is present in the Connection name column
+    @Regression @Connections
+    Scenario: Validate added connection name is able to delete
+    And Select "snowflake" database from connections page
+    And Check the "demo2" checkbox to delete
+    And Click on delete icon to delete connection
+    And Click on yes button on delete confirmation popup
+    Then Validate deleted connection is present in the Connection name column
 #
 #      @Smoke @Connections-1
 #      Scenario: Validate connection name field accepts invalid data range
@@ -142,18 +142,9 @@ Then Validate selected rule is added
     Then Validate selected table data is displayed
     And Click on Validate button
     Then Validate "DQ Rules" dashboard page is displayed
-    Then Leave Rule name field empty and validate create rule button is disabled
+    Then Leave Rule name field empty and validate field displays "0px rgb(211, 47, 4)" border color
 
 
-  @Connections-DQRule-delete
-  Scenario: Validate selected DQ Rule is able to delete from Rules list
-    And Select "snowflake" database from connections page
-    And Click on "demo1" connection preview icon
-    Then Validate selected connection database tables are displayed on new Page
-    And Click on "BULKTABLE1200" table in the tables list
-    Then Validate selected table data is displayed
-    And Click on Validate button
-    Then Validate "DQ Rules" dashboard page is displayed
 
 
 

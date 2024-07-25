@@ -22,8 +22,12 @@ public class ConnectionsElements {
 
     @FindBy(xpath = "//*[text()='Confirm']")
     public WebElement confirmBtn;
-    @FindBy(css = "[class='MuiTypography-root MuiTypography-h6 upper-case css-10k2nzz']")
+//    @FindBy(css = "[class='MuiTypography-root MuiTypography-h6 upper-case css-10k2nzz']")
+//    public WebElement dashBoardPageHeader;
+
+    @FindBy(xpath = "//*[contains(@class,'MuiTypography-root MuiTypography-h6')]")
     public WebElement dashBoardPageHeader;
+
     @FindBy(css = "[class='center MuiBox-root css-1o817yz']")
     public WebElement allConnections;
     @FindBy(tagName = "img")
@@ -74,7 +78,7 @@ public class ConnectionsElements {
 //    @FindBy(css ="[col-id='connectionName'][role='gridcell']")
 //    public List<WebElement> lstConnectNames;
 
-    @FindBy(css = "[col-id='connectionName'][role='gridcell'] [class='MuiBox-root css-38iob1']")
+    @FindBy(xpath = "//*[@role='gridcell' and @aria-colindex='2']")
     public List<WebElement> lstConnectNames;
 
     @FindBy(xpath = "//*[text()='Edit']")
@@ -141,4 +145,13 @@ public class ConnectionsElements {
     public List<WebElement> dqRuleNameColList;
     @FindBy(xpath = "//*[@role='gridcell' and @col-id='ConnectionName']")
     public List<WebElement> conntNameColList;
+
+//---------------------------------------
+    @FindBy(css = "MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall css-1o6z5ng")
+    public WebElement sltValChecksList;
+
+    @FindBy(xpath = "//*[@class='MuiGrid-root MuiGrid-item MuiGrid-grid-md-8 css-zpohz8']//*[@class='MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall css-1o6z5ng']")
+    public WebElement sltValChecksFieldList;
+
+
 }

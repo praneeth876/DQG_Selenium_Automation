@@ -153,20 +153,12 @@ public class ConnectionsPage extends ConnectionsElements {
 
     public void verifyPopUpMessage(String expPopUpMsg) throws InterruptedException {
         webutils.waitUntilElementVisible(alertPopUp);
-        // boolean value = false;
         if (alertPopUp.isDisplayed()) {
             System.out.println(webutils.getElementText(alertPopUpMsg) + "-----------" + expPopUpMsg);
             valUtils.validateAssertEquals(expPopUpMsg, webutils.getElementText(alertPopUpMsg), expPopUpMsg + " message is not displayed");
-//            if () {
-//                System.out.println("equals----------------");
-//                value = true;
-//            }
-//        }
-//            valUtils.validateAssertTrue(value, expPopUpMsg + " message is not displayed");
-
-            Thread.sleep(4000);
         }
     }
+
     public void clickOnCancelIcon() {
         webutils.waitUntilElementVisible(cancelIcon);
         if (cancelIcon.isDisplayed()) {
@@ -309,7 +301,7 @@ public class ConnectionsPage extends ConnectionsElements {
         Thread.sleep(4000);
         webutils.clickOnElement(PgHeader);
         for (int i = 0; i < starIcon.size(); i++) {
-            if (webutils.getElementCSSBorder(starIcon.get(i)).equals(style)) {
+            if (webutils.getElementCSSValue(starIcon.get(i),"border").equals(style)) {
                 System.out.println(webutils.getElementText(listOfFields.get(i)) + " is empty, So enter" + webutils.getElementText(listOfFields.get(i)));
             }
         }
@@ -340,6 +332,7 @@ public class ConnectionsPage extends ConnectionsElements {
     }
 
     public void clickOnAddColumnButton() {
+        webutils.waitUntilElementVisible(addColumn);
         webutils.clickOnElement(addColumn);
     }
 
@@ -377,7 +370,9 @@ public class ConnectionsPage extends ConnectionsElements {
                 break;
             }
         }
+
     }
+
     public void validateSelectedCheckIsPresentInRuleSection() {
         String sltCheck = ChecksAndColumns.CHECK_NAME.getValue();
         webutils.waitUntilElementVisible(sltChecksList);
@@ -395,7 +390,7 @@ public class ConnectionsPage extends ConnectionsElements {
     }
 
     public void validateRuleIsCreatedInRuleListForSelectedConnection() throws InterruptedException {
-        Thread.sleep(10000);
+        Thread.sleep(50000);
         String connectName = Context.CONNECTION_NAME.getValue();
         String ruleName = Context.RULE_NAME.getValue();
         boolean value = false;
@@ -413,22 +408,14 @@ public class ConnectionsPage extends ConnectionsElements {
     }
 
 
-    public void checkAndValidateRuleNameFieldIsAcceptingEmptyValues() {
+    public void checkAndValidateRuleNameFieldIsAcceptingEmptyValues(String style) {
         boolean value = false;
-        System.out.println("----"+ruleNameEle.getAttribute("value")+"----");
+        System.out.println("----" + ruleNameEle.getAttribute("value") + "----");
         if (ruleNameEle.getAttribute("value").equals("")) {
-            if (!(createRule.isDisplayed())) {
-                System.out.println("Not enabled");
+            if (webutils.getElementCSSValue(ruleNameEle,"border").equals(style)) {
                 value = true;
             }
-        }
-        if (!value) {
             valUtils.validateAssertTrue(value, "Create rule button is enabled with empty rule name also");
         }
-
     }
-
 }
-
-
-

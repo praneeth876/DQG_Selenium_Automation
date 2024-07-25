@@ -1,6 +1,7 @@
 package com.utilities;
 
 import com.DriverManagers.LoggerManager;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -42,11 +43,18 @@ public void dragAndDropElement(WebElement dragElement,WebElement dropElement){
 }
 
 //KeyBoard Actions using Actions class
-public void keyBoardOperations(String keyboardButtonName){
-    Actions actions=new Actions(driver);
-    actions.sendKeys("Keys."+keyboardButtonName).build().perform();
-    logger.info("---keyboard action"+keyboardButtonName+" is pressed---");
-}
+public void pressKeyBoardDownArrow(){
+        Actions actions=new Actions(driver);
+        actions.sendKeys(Keys.ARROW_DOWN).build().perform();
+        //actions.sendKeys("Keys."+keyboardButtonName).build().perform();
+       // logger.info("---keyboard action"+keyboardButtonName+" is pressed---");
+    }
+    public void pressKeyBoardENTER(){
+        Actions actions=new Actions(driver);
+        actions.sendKeys(Keys.ENTER).build().perform();
+        //actions.sendKeys("Keys."+keyboardButtonName).build().perform();
+        //logger.info("---keyboard action"+keyboardButtonName+" is pressed---");
+    }
 
 //Select dropdown values
     public void selectdropDownValuebyText(WebElement element,String visibleText){
@@ -105,19 +113,21 @@ public void keyBoardOperations(String keyboardButtonName){
           }
         logger.info("----element value is updated-----");
     }
-    public String getElementCSSBorder(WebElement element){
-         return  element.getCssValue("border");
+    public String getElementCSSValue(WebElement element,String propName){
+         return  element.getCssValue(propName);
     }
     public void clickOnElement(WebElement element){
         element.click();
         logger.info("----element is clicked-----");
     }
     public void waitUntilElementVisible(WebElement element){
-     wait=new WebDriverWait(driver, Duration.ofSeconds(20));
+     wait=new WebDriverWait(driver, Duration.ofSeconds(100));
      wait.until(ExpectedConditions.visibilityOf(element));
         logger.info("----waited until element visible-----");
     }
 
-
+public String getCurrentURL(){
+    return driver.getCurrentUrl();
+}
 
 }
