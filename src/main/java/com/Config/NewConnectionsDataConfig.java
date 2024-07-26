@@ -43,4 +43,7 @@ public class NewConnectionsDataConfig {
     public String getAuthType() {
         return prop.getProperty("AuthenticationType");
     }
+
+    public String getSchema() { return prop.getProperty("schema");
+    }
 }

@@ -73,8 +73,13 @@ public class ConnectionsStepDefs {
         connectionspage.enterUserName();
     }
     @Then("Update password in Password field")
-    public void update_password_in_password_field() {
+    public void update_password_in_password_field() throws InterruptedException {
         connectionspage.enterPasswordInNewConnectionPage();
+
+    }
+    @Then("Select schema from Schema dropdown")
+    public void select_schema_from_schema_dropdown() throws InterruptedException {
+        connectionspage.selectSchemafromDropDown();
     }
     @Then("Click on Test & Create button")
     public void click_on_test_create_button() throws InterruptedException {
@@ -132,7 +137,7 @@ connectionspage.clickOnPreviewButtonOfSelectedConnection(cntNameToPreview);
       connectionspage.verifySelectedConnectionDetailsAreDisplayed();
     }
     @Then("Click on {string} table in the tables list")
-    public void click_on_table_in_the_tables_list(String table) {
+    public void click_on_table_in_the_tables_list(String table) throws InterruptedException {
 connectionspage.selectTableFromTablesList(table);
     }
     @Then("Validate selected table data is displayed")
@@ -158,10 +163,16 @@ connectionspage.selectTableFromTablesList(table);
     public void update_rule_name_in_rule_name_field(String ruleName) {
 connectionspage.enterRuleName(ruleName);
     }
-    @Then("Click on add column button")
-    public void click_on_add_column_button() {
-        connectionspage.clickOnAddColumnButton();
+//    @Then("Click on add column button")
+//    public void click_on_add_column_button() throws InterruptedException {
+//        connectionspage.clickOnAddColumnButton();
+//    }
+
+    @Then("Click on {string} row add column button")
+    public void click_on_row_add_column_button(String rowNum) throws InterruptedException {
+        connectionspage.clickOnAddColumnButton(rowNum);
     }
+
     @Then("Select {string} column from the table by checking checkbox in column table popUp")
     public void select_column_from_the_table_by_checking_checkbox_in_column_table_pop_up(String columnName) {
         connectionspage.selectColumnsFromTableList(columnName);
@@ -174,9 +185,10 @@ connectionspage.enterRuleName(ruleName);
     public void validate_selected_column_is_added() {
         connectionspage.validateSelectedColumnIsPresentInColumnSection();
     }
-    @Then("Select {string} from value checks dropdown under DQ Rule section and drop it to drop here in Rule section")
-    public void select_from_value_checks_dropdown_under_dq_rule_section_and_drop_it_to_drop_here_in_rule_section(String checkName) throws InterruptedException {
-        connectionspage.selectChecksInValCheck(checkName);
+
+    @Then("Select {string} from checks and drop it to {string} row drop here under rule")
+    public void select_from_checks_and_drop_it_to_row_drop_here_under_rule(String checkName, String droprow) throws InterruptedException {
+        connectionspage.selectChecksInValCheck(checkName, droprow);
     }
     @Then("Validate selected rule is added")
     public void validate_selected_rule_is_added() {

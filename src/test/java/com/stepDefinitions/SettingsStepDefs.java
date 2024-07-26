@@ -54,4 +54,14 @@ public class SettingsStepDefs {
         settings.VerifyPageIsNavigatedToLoginPage();
     }
 
+    @Then("Click on service status icon")
+    public void click_on_service_status_icon() {
+      settings.clickOnServiceStatus();
+    }
+    @Then("Validate services are in {string}")
+    public void validate_services_are_in(String status) {
+        settings.VerifyStatusServiceIsOnline(status);
+    }
+
+
 }

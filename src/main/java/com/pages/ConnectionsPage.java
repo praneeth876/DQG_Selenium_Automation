@@ -13,6 +13,7 @@ import com.utilities.WebUtils;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.flogger.Flogger;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -36,13 +37,30 @@ public class ConnectionsPage extends ConnectionsElements {
     }
 
     public void navigateToURL() {
-        driver.navigate().to("https://dqg.kairostech.com/login");
+        //driver.navigate().to("https://dqg.kairostech.com/login");
+        driver.navigate().to("http://localhost:81/login");
+        webutils.waitUntilElementVisible(login);
+        webutils.clickOnElement(login);
+        webutils.waitUntilElementVisible(user);
+        webutils.clickOnElement(user);
+
+
+        try{
+            webutils.waitUntilElementVisible(confirmPopup);
+        if(confirmPopup.isDisplayed()){
+            webutils.clickOnElement(confirm);
+        }}catch (NoSuchElementException e){
+            e.getMessage();
+        }
     }
 
     public void enterEmail(String email) {
         webutils.waitUntilElementVisible(emailField);
         // webutils.updateElementValue(emailField,email);
         emailField.sendKeys(email);
+
+
+
 
     }
 
@@ -145,6 +163,24 @@ public class ConnectionsPage extends ConnectionsElements {
         String password = newConnData.getPassword();
         webutils.sendText(passEle, password);
     }
+
+    public  void selectSchemafromDropDown() throws InterruptedException {
+
+        webutils.waitUntilElementVisible(schema);
+        webutils.clickOnElement(schema);
+        String schemaOption = newConnData.getSchema();
+Thread.sleep(4000);
+        for (WebElement opt : schemaOptions) {
+
+            webutils.waitUntilElementVisible(opt);
+            if (webutils.getElementText(opt).equals(schemaOption)) {
+                webutils.waitUntilElementVisible(opt);
+                jsUtils.clickOnElement(opt);
+                break;
+            }
+        }
+    }
+
 
     public void clickOnTestAndCreateButton() throws InterruptedException {
         Thread.sleep(3000);
@@ -263,6 +299,7 @@ public class ConnectionsPage extends ConnectionsElements {
 
     public void verifySelectedConnectionDetailsAreDisplayed() throws InterruptedException {
         Thread.sleep(3000);
+        webutils.waitUntilElementVisible(dbConnTitle);
         String slContName = Context.CONNECTION_NAME.getValue();
         boolean value = false;
         if (webutils.getElementText(dbConnTitle).equals(slContName)) {
@@ -272,8 +309,9 @@ public class ConnectionsPage extends ConnectionsElements {
 
     }
 
-    public void selectTableFromTablesList(String tableName) {
+    public void selectTableFromTablesList(String tableName) throws InterruptedException {
         Context.TABLE_NAME.setValue(tableName);
+        Thread.sleep(3000);
         for (WebElement dbTable : tablesList) {
             if (webutils.getElementText(dbTable).equals(tableName)) {
                 webutils.waitUntilElementVisible(dbTable);
@@ -284,7 +322,8 @@ public class ConnectionsPage extends ConnectionsElements {
     }
 
     public void verifySelectedTableDetailsAreDisplayed() throws InterruptedException {
-        Thread.sleep(4000);
+        //Thread.sleep(4000);
+        webutils.waitUntilElementVisible(sltdTableTitle);
         String sltTableName = Context.TABLE_NAME.getValue();
         boolean value = false;
         if (webutils.getElementText(sltdTableTitle).equals(sltTableName)) {
@@ -324,17 +363,16 @@ public class ConnectionsPage extends ConnectionsElements {
             valUtils.validateAssertTrue(true, "Error in connection name field it is not accepting valid data range");
         }
     }
-
-
     public void enterRuleName(String ruleName) {
         Context.RULE_NAME.setValue(ruleName);
         webutils.updateElementText(ruleNameEle, ruleName);
     }
 
-    public void clickOnAddColumnButton() {
-        webutils.waitUntilElementVisible(addColumn);
-        webutils.clickOnElement(addColumn);
-    }
+    public void clickOnAddColumnButton(String rowNum) throws InterruptedException {
+        Thread.sleep(5000);
+        int rownumber=Integer.parseInt(rowNum);
+        webutils.clickOnElement(addColumn.get(rownumber-1));
+        }
 
     public void selectColumnsFromTableList(String colName) {
         ChecksAndColumns.COLUMN_NAME.setValue(colName);
@@ -347,7 +385,11 @@ public class ConnectionsPage extends ConnectionsElements {
 
     }
 
+
+
+
     public void clickOnCancelIconOnAddColumPopUp() {
+        webutils.waitUntilElementVisible(cancelIconOnTablPopUp);
         webutils.clickOnElement(cancelIconOnTablPopUp);
     }
 
@@ -361,12 +403,13 @@ public class ConnectionsPage extends ConnectionsElements {
         valUtils.validateAssertTrue(value, "Selected table column is not present in column section");
     }
 
-    public void selectChecksInValCheck(String valCheckName) throws InterruptedException {
+    public void selectChecksInValCheck(String valCheckName,String droprow) throws InterruptedException {
+        int dropRow=Integer.parseInt(droprow);
         Thread.sleep(5000);
         ChecksAndColumns.CHECK_NAME.setValue(valCheckName);
         for (WebElement valCheck : listOfDragValCks) {
             if (webutils.getElementText(valCheck).equalsIgnoreCase(valCheckName)) {
-                webutils.dragAndDropElement(valCheck, dropEle);
+                webutils.dragAndDropElement(valCheck, dropEle.get(dropRow-1));
                 break;
             }
         }

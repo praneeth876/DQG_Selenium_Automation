@@ -32,19 +32,26 @@ public class DQ_RulesElements {
     public WebElement deleteIcon;
 
 
-    @FindBy(css = "[class='ecRuleCheckCard MuiBox-root css-0']")
+    @FindBy(css = "[class='ecRuleCheckCard MuiBox-root css-0'] [class='v-center MuiBox-root css-0'] [class='MuiTypography-root MuiTypography-body1 css-136foal']")
     public List<WebElement> sltValChecksList;
 
-
+    @FindBy(css = "[class='ecRuleCheckCard MuiBox-root css-0']")
+    public List<WebElement> boxList;
 //    @FindBy(css = "MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall css-1o6z5ng")
 //    public WebElement sltValChecksList;
 
-    @FindBy(xpath = "//*[@class='MuiGrid-root MuiGrid-item MuiGrid-grid-md-8 css-zpohz8']//*[@class='MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall css-1o6z5ng']")
-     public WebElement sltValChecksFieldList;
+//    @FindBy(xpath = "//*[@class='MuiGrid-root MuiGrid-item MuiGrid-grid-md-8 css-zpohz8']//*[@class='MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall css-1o6z5ng']")
+//     public WebElement sltValChecksFieldList;
 
-    @FindBy(xpath = "")
-    public WebElement sltValChecksFieldList1;
+    @FindBy(css = "[class='ecRuleCheckCard MuiBox-root css-0'] [type='text']")
+    public WebElement sltValChecksFieldFirst;
+
+    @FindBy(css = "[class='ecRuleCheckCard MuiBox-root css-0'] [type='text']")
+    public List<WebElement> sltValChecksFieldList;
     @FindBy(css = "ag-loading-text")
     public WebElement loading;
+
+    @FindBy(xpath = "//*[text()='Add Row']")
+    public WebElement addRow;
 
 }

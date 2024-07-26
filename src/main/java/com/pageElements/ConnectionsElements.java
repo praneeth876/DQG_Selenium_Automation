@@ -8,6 +8,19 @@ import java.util.List;
 public class ConnectionsElements {
 
 
+
+    @FindBy(xpath = "//*[text()='Login with Azure AD']")
+    public WebElement login;
+
+    @FindBy(xpath = "//*[text()='Praneeth Reddy Katamreddy - Kairos']")
+    public WebElement user;
+
+    @FindBy(xpath = "//*[contains(@class,'MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root')]")
+    public WebElement confirmPopup;
+
+    @FindBy(xpath = "//*[text()='Confirm']")
+    public WebElement confirm;
+
     @FindBy(css = "[id='email']")
     public WebElement emailField;
 
@@ -57,6 +70,13 @@ public class ConnectionsElements {
 
     @FindBy(css = "[name='password']")
     public WebElement passEle;
+
+    //Used when working on server
+    @FindBy(css = "[class='MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall MuiInputBase-inputAdornedEnd css-1ds9jv8']")
+    public WebElement schema;
+
+    @FindBy(css = "[role='option']")
+    public List<WebElement> schemaOptions;
 
     @FindBy(xpath = "//button[contains(text(),'Test')]")
     public WebElement testAndCreateBtn;
@@ -121,12 +141,17 @@ public class ConnectionsElements {
     @FindBy(css = "[name='ruleName']")
     public WebElement ruleNameEle;    //enter text
     @FindBy(xpath = "//*[text()=' Add Column']")
-    public WebElement addColumn;   //click
+    public List<WebElement> addColumn;   //click
     @FindBy(css = "[class='MuiTableCell-root MuiTableCell-body MuiTableCell-alignLeft MuiTableCell-sizeMedium css-1iyeb4d']")
     public List<WebElement> columnNameList;  //reference to select column
     @FindBy(xpath = "//*[contains(@class,'MuiTable-root MuiTable-stickyHeader')]//*[@type='checkbox']")
     public List<WebElement> chkBoxColName;  //check checkbox
-    @FindBy(xpath = "//*[@data-testid='CancelOutlinedIcon']")
+
+  @FindBy(xpath = "//*[contains(@class,'MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1')]")
+  public List<WebElement> columnSection;
+
+
+    @FindBy(xpath = "//*[@class='MuiBox-root css-tzofp1'] //*[@data-testid='CancelOutlinedIcon']")
     public WebElement cancelIconOnTablPopUp; //click
 
     @FindBy(xpath = "//*[contains(@class,'MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1')]")
@@ -134,7 +159,7 @@ public class ConnectionsElements {
     @FindBy(css = "[role='button'] [class='v-center MuiBox-root css-8atqhb']")
     public List<WebElement> listOfDragValCks;    //select value check dropdown
     @FindBy(xpath = "//*[text()='Drop here']")
-    public WebElement dropEle;   //drop selected check
+    public List<WebElement> dropEle;   //drop selected check
 
     @FindBy(css = "[class='dragItemsList']")
     public WebElement sltChecksList;   //validate

@@ -73,7 +73,7 @@ String browser="EDGE";
 //            FileOutputStream fileOut = new FileOutputStream(file);
 //            fileOut.write(screenshot);
 //        }
-//driver.quit();
+driver.close();
 
     }
 

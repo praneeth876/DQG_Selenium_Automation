@@ -27,7 +27,6 @@ public class DQ_RulesPage extends DQ_RulesElements {
         webutils = new WebUtils(driver);
         jsUtils = new JavaScriptUtils(driver);
         valUtils = new ValidationUtils();
-
     }
 
 
@@ -53,24 +52,23 @@ public class DQ_RulesPage extends DQ_RulesElements {
     }
 
     public void chooseTableFromDropDown(String table) throws InterruptedException {
-        Thread.sleep(20000);
+        Thread.sleep(10000);
         Context.TABLE_NAME.setValue(table);
         webutils.waitUntilElementVisible(sltTabledrpDwn);
         webutils.clickOnElement(sltTabledrpDwn);
         webutils.updateElementText(sltTabledrpDwn, table);
         webutils.pressKeyBoardDownArrow();
         webutils.pressKeyBoardENTER();
-        //Thread.sleep(10000);
     }
 
-    public void clickOnModule(String moduleName) {
+    public void clickOnModule(String moduleName) throws InterruptedException {
         for (WebElement modList : lstmoduleNames) {
+            webutils.waitUntilElementVisible(modList);
             if (webutils.getElementText(modList).equals(moduleName)) {
                 webutils.clickOnElement(modList);
                 break;
             }
         }
-
     }
 
     public void selectRuleAndConnectNameCheckboxToDelete(String conntName, String ruleName) {
@@ -87,7 +85,6 @@ public class DQ_RulesPage extends DQ_RulesElements {
         }
     }
 
-
     public void validateDQRuleIsPresentInRulesList() {
         boolean value = false;
         String conntName = Context.CONNECTION_NAME.getValue();
@@ -98,7 +95,6 @@ public class DQ_RulesPage extends DQ_RulesElements {
             if (webutils.getElementText(lstConnectNames.get(i)).equalsIgnoreCase(conntName)) {
                 if (webutils.getElementText(lstRuleNames.get(i)).equalsIgnoreCase(ruleName)) {
                     value = true;
-                    System.out.println("------------------------Rule is not present----------------------------");
                     break;
                 }
             }
@@ -106,43 +102,41 @@ public class DQ_RulesPage extends DQ_RulesElements {
         valUtils.validateAssertTrue(value, "Rule is not deleted from the table");
     }
 
-    public void EnterTextInCheckFields(String text,String valCheck) throws InterruptedException {
+    public void EnterTextInCheckFields(String text, String valCheck) throws InterruptedException {
         Thread.sleep(5000);
-        //ChecksAndColumns.CHECK_NAME.setValue(valCheckName);
         String sltCheck = ChecksAndColumns.CHECK_NAME.getValue();
-        // webutils.waitUntilElementVisible(sltValChecksList);
-
-        for(WebElement valChecks:sltValChecksList){
-            webutils.waitUntilElementVisible(valChecks);
-           if( webutils.getElementText(valChecks).contains(valCheck)){
-
-               if((webutils.getElementAttribute(sltValChecksFieldList,"value").equals(""))){
-                   webutils.updateElementText(sltValChecksFieldList,text);
-                   break;
-               }
+        int count = 0;
+        for (int i = 0; i < sltValChecksList.size(); i++) {
+            if (sltValChecksFieldList.size() > 0) {
+                for (int j = 0; j < sltValChecksFieldList.size(); j++) {
+                    if ((webutils.getElementText(sltValChecksList.get(i)).equalsIgnoreCase(valCheck)) && (webutils.getElementAttribute(sltValChecksFieldList.get(j), "value").equals(""))) {
+                        webutils.updateElementText(sltValChecksFieldList.get(j), text);
+                        break;
+                    }
+                }
+            } else {
+                if ((webutils.getElementText(sltValChecksList.get(i)).equalsIgnoreCase(valCheck)) && (webutils.getElementAttribute(sltValChecksFieldFirst, "value").equals(""))) {
+                    webutils.updateElementText(sltValChecksFieldFirst, text);
+                }
             }
         }
+    }
 
-//        boolean value = false;
-//        if (webutils.getElementText(sltValChecksList).contains(sltCheck)) {
-//            if(sltValChecksFieldList.isDisplayed() || (webutils.getElementAttribute(sltValChecksFieldList,"value").equals(""))){
-//                webutils.updateElementText(sltValChecksFieldList,text);
-//            }else if(!(webutils.getElementAttribute(sltValChecksFieldList,"value").equals(""))){
-//                webutils.updateElementText(sltValChecksFieldList,text);
+    public void clickOnAddRowButton() {
+        webutils.waitUntilElementVisible(addRow);
+        webutils.clickOnElement(addRow);
+    }
+
+//    public void validateLoadingText(int time) {
+//
+//        try {
+//            if (webutils.getElementText(loading).equals("Loading")) {
+//                Thread.sleep(time);
 //            }
+//        } catch (NoSuchElementException | InterruptedException ignored) {
+//
 //        }
-        }
-
-        public void validateLoadingText(int time){
-
-        try{
-            if(webutils.getElementText(loading).equals("Loading")){
-                     Thread.sleep(time);
-            }
-        }catch(NoSuchElementException | InterruptedException ignored){
-
-        }
-        }
+//    }
 
 
 }

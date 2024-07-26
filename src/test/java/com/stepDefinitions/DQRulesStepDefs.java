@@ -19,7 +19,8 @@ public class DQRulesStepDefs {
 
 
     @Then("Click on {string} module")
-    public void click_on_module(String modName) {
+    public void click_on_module(String modName) throws InterruptedException {
+
         dqRulesPage.clickOnModule(modName);
     }
 
@@ -57,6 +58,9 @@ public class DQRulesStepDefs {
     public void update_in_value_check_field(String text, String ValCheck) throws InterruptedException {
         dqRulesPage.EnterTextInCheckFields(text,ValCheck);
     }
-
+    @Then("Click on Add row to add other rule")
+    public void click_on_add_row_to_add_other_rule() {
+        dqRulesPage.clickOnAddRowButton();
+    }
 
 }

@@ -89,5 +89,23 @@ public class Settings extends SettingsElements {
 valUtils.validateAssertTrue(value,"Not navigated to login page");
     }
 
+    public void clickOnServiceStatus(){
+        webutils.waitUntilElementVisible(serviceStatusIcon);
+        webutils.clickOnElement(serviceStatusIcon);
+    }
+    public void VerifyStatusServiceIsOnline(String status){
+        boolean value=false;
+       for (WebElement service: lstServices){
+           System.out.println(webutils.getElementText(service));
+           if(webutils.getElementText(service).contains(status)){
+               System.out.println(webutils.getElementText(service));
+               value=true;
+           }
+       }
+        valUtils.validateAssertTrue(value,"Some service is not up and running");
+    }
+
+
+
 
 }
