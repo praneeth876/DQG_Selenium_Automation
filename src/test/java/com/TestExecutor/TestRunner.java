@@ -11,17 +11,10 @@ import org.junit.runner.RunWith;
                             "timeline:target/test-output-thread/",
                             "junit:target/cucumber-reports/cucumber-junit-report.xml"
         },
-        tags = "@DQRules-MultipleColumns",
+        tags = "@DQRules-ExecResult",
         dryRun = false)
 public class TestRunner  {
-//        @BeforeSuite
-//        public void testStart(){
-//                System.out.println("Test execution started");
-//        }
-//        @AfterSuite
-//        public void testFinish(){
-//                System.out.println("Test execution finished");
-//        }
+
 }
 
 

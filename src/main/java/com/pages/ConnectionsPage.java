@@ -1,18 +1,13 @@
 package com.pages;
 
 import com.Config.NewConnectionsDataConfig;
-import com.Config.ReadConfig;
 import com.DriverManagers.LoggerManager;
 import com.Enum.ChecksAndColumns;
 import com.Enum.Context;
-import com.Enum.URL;
 import com.pageElements.ConnectionsElements;
 import com.utilities.JavaScriptUtils;
 import com.utilities.ValidationUtils;
 import com.utilities.WebUtils;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import lombok.extern.flogger.Flogger;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -36,20 +31,18 @@ public class ConnectionsPage extends ConnectionsElements {
 
     }
 
-    public void navigateToURL() {
-        //driver.navigate().to("https://dqg.kairostech.com/login");
-        driver.navigate().to("http://localhost:81/login");
+    public void navigateToDashBoardPage() {
         webutils.waitUntilElementVisible(login);
         webutils.clickOnElement(login);
         webutils.waitUntilElementVisible(user);
         webutils.clickOnElement(user);
 
-
-        try{
+        try {
             webutils.waitUntilElementVisible(confirmPopup);
-        if(confirmPopup.isDisplayed()){
-            webutils.clickOnElement(confirm);
-        }}catch (NoSuchElementException e){
+            if (confirmPopup.isDisplayed()) {
+                webutils.clickOnElement(confirm);
+            }
+        } catch (NoSuchElementException e) {
             e.getMessage();
         }
     }
@@ -58,8 +51,6 @@ public class ConnectionsPage extends ConnectionsElements {
         webutils.waitUntilElementVisible(emailField);
         // webutils.updateElementValue(emailField,email);
         emailField.sendKeys(email);
-
-
 
 
     }
@@ -76,9 +67,6 @@ public class ConnectionsPage extends ConnectionsElements {
         webutils.waitUntilElementVisible(signInBtn);
         webutils.clickOnElement(signInBtn);
         Thread.sleep(3000);
-//        if (sessionConfirmPopUp.isDisplayed()) {
-//            webutils.clickOnElement(confirmBtn);
-//        }
     }
 
     public void verifyDashboardPageisDislayed(String exptitle) throws InterruptedException {
@@ -92,8 +80,6 @@ public class ConnectionsPage extends ConnectionsElements {
     }
 
     public void selectdatabaseConnection(String databaseName) throws InterruptedException {
-//        Thread.sleep(15000);
-//        webutils.
         for (WebElement imgs : lstConnectionImages) {
             webutils.waitUntilElementVisible(imgs);
             //System.out.println(imgs.getAttribute("src"));
@@ -120,7 +106,7 @@ public class ConnectionsPage extends ConnectionsElements {
 
     }
 
-    public void enterConnectionName(String connectname) {
+    public void enterConnectionName(String connectname) throws InterruptedException {
         Context.CONNECTION_NAME.setValue(connectname);
         webutils.updateElementText(conectNameEle, connectname);
     }
@@ -130,7 +116,6 @@ public class ConnectionsPage extends ConnectionsElements {
         String server = newConnData.getServer();
         Thread.sleep(2000);
         webutils.sendText(serverELe, server);
-        //webutils.sendText(serverELe,"");
     }
 
     public void enterDatabaseName() throws InterruptedException {
@@ -138,7 +123,6 @@ public class ConnectionsPage extends ConnectionsElements {
         String database = newConnData.getDatabase();
         Thread.sleep(2000);
         webutils.sendText(datBaseEle, database);
-        //webutils.sendText(datBaseEle,"");
     }
 
     public void selectAuthenticationType() {
@@ -155,7 +139,6 @@ public class ConnectionsPage extends ConnectionsElements {
     public void enterUserName() {
         String user = newConnData.getUsername();
         webutils.sendText(userEle, user);
-        //webutils.sendText(userEle,"");
     }
 
     public void enterPasswordInNewConnectionPage() {
@@ -164,12 +147,12 @@ public class ConnectionsPage extends ConnectionsElements {
         webutils.sendText(passEle, password);
     }
 
-    public  void selectSchemafromDropDown() throws InterruptedException {
+    public void selectSchemafromDropDown() throws InterruptedException {
 
         webutils.waitUntilElementVisible(schema);
         webutils.clickOnElement(schema);
         String schemaOption = newConnData.getSchema();
-Thread.sleep(4000);
+        Thread.sleep(4000);
         for (WebElement opt : schemaOptions) {
 
             webutils.waitUntilElementVisible(opt);
@@ -204,12 +187,11 @@ Thread.sleep(4000);
 
     public void pageNation(String size) throws InterruptedException {
         Thread.sleep(4000);
-        if (!webutils.getElementText(pgeComboBox).equals("100")) {
+        if (!webutils.getElementText(pgeComboBox).equals(size)) {
             webutils.clickOnElement(pgeComboBox);
             for (WebElement optELem : pageOptions) {
-                if (webutils.getElementText(optELem).equals("100")) {
+                if (webutils.getElementText(optELem).equals(size)) {
                     webutils.clickOnElement(optELem);
-                    Thread.sleep(4000);
                     break;
                 }
             }
@@ -340,7 +322,7 @@ Thread.sleep(4000);
         Thread.sleep(4000);
         webutils.clickOnElement(PgHeader);
         for (int i = 0; i < starIcon.size(); i++) {
-            if (webutils.getElementCSSValue(starIcon.get(i),"border").equals(style)) {
+            if (webutils.getElementCSSValue(starIcon.get(i), "border").equals(style)) {
                 System.out.println(webutils.getElementText(listOfFields.get(i)) + " is empty, So enter" + webutils.getElementText(listOfFields.get(i)));
             }
         }
@@ -363,16 +345,18 @@ Thread.sleep(4000);
             valUtils.validateAssertTrue(true, "Error in connection name field it is not accepting valid data range");
         }
     }
-    public void enterRuleName(String ruleName) {
+
+    public void enterRuleName(String ruleName) throws InterruptedException {
         Context.RULE_NAME.setValue(ruleName);
         webutils.updateElementText(ruleNameEle, ruleName);
     }
 
     public void clickOnAddColumnButton(String rowNum) throws InterruptedException {
         Thread.sleep(5000);
-        int rownumber=Integer.parseInt(rowNum);
-        webutils.clickOnElement(addColumn.get(rownumber-1));
-        }
+        int rownumber = Integer.parseInt(rowNum);
+        //webutils.waitUntilElementVisible(addColumn.get(rownumber-1));
+        webutils.clickOnElement(addColumn.get(rownumber - 1));
+    }
 
     public void selectColumnsFromTableList(String colName) {
         ChecksAndColumns.COLUMN_NAME.setValue(colName);
@@ -384,8 +368,6 @@ Thread.sleep(4000);
         }
 
     }
-
-
 
 
     public void clickOnCancelIconOnAddColumPopUp() {
@@ -403,13 +385,13 @@ Thread.sleep(4000);
         valUtils.validateAssertTrue(value, "Selected table column is not present in column section");
     }
 
-    public void selectChecksInValCheck(String valCheckName,String droprow) throws InterruptedException {
-        int dropRow=Integer.parseInt(droprow);
+    public void selectChecksInValCheck(String valCheckName, String droprow) throws InterruptedException {
+        int dropRow = Integer.parseInt(droprow);
         Thread.sleep(5000);
         ChecksAndColumns.CHECK_NAME.setValue(valCheckName);
         for (WebElement valCheck : listOfDragValCks) {
             if (webutils.getElementText(valCheck).equalsIgnoreCase(valCheckName)) {
-                webutils.dragAndDropElement(valCheck, dropEle.get(dropRow-1));
+                webutils.dragAndDropElement(valCheck, dropEle.get(dropRow - 1));
                 break;
             }
         }
@@ -455,7 +437,7 @@ Thread.sleep(4000);
         boolean value = false;
         System.out.println("----" + ruleNameEle.getAttribute("value") + "----");
         if (ruleNameEle.getAttribute("value").equals("")) {
-            if (webutils.getElementCSSValue(ruleNameEle,"border").equals(style)) {
+            if (webutils.getElementCSSValue(ruleNameEle, "border").equals(style)) {
                 value = true;
             }
             valUtils.validateAssertTrue(value, "Create rule button is enabled with empty rule name also");

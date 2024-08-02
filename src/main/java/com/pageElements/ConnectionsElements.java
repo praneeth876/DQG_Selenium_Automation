@@ -8,7 +8,6 @@ import java.util.List;
 public class ConnectionsElements {
 
 
-
     @FindBy(xpath = "//*[text()='Login with Azure AD']")
     public WebElement login;
 
@@ -35,8 +34,6 @@ public class ConnectionsElements {
 
     @FindBy(xpath = "//*[text()='Confirm']")
     public WebElement confirmBtn;
-//    @FindBy(css = "[class='MuiTypography-root MuiTypography-h6 upper-case css-10k2nzz']")
-//    public WebElement dashBoardPageHeader;
 
     @FindBy(xpath = "//*[contains(@class,'MuiTypography-root MuiTypography-h6')]")
     public WebElement dashBoardPageHeader;
@@ -67,11 +64,9 @@ public class ConnectionsElements {
     @FindBy(css = "[name='user']")
     public WebElement userEle;
 
-
     @FindBy(css = "[name='password']")
     public WebElement passEle;
 
-    //Used when working on server
     @FindBy(css = "[class='MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall MuiInputBase-inputAdornedEnd css-1ds9jv8']")
     public WebElement schema;
 
@@ -95,8 +90,6 @@ public class ConnectionsElements {
     @FindBy(css = "[role='option']")
     public List<WebElement> pageOptions;
 
-//    @FindBy(css ="[col-id='connectionName'][role='gridcell']")
-//    public List<WebElement> lstConnectNames;
 
     @FindBy(xpath = "//*[@role='gridcell' and @aria-colindex='2']")
     public List<WebElement> lstConnectNames;
@@ -147,9 +140,8 @@ public class ConnectionsElements {
     @FindBy(xpath = "//*[contains(@class,'MuiTable-root MuiTable-stickyHeader')]//*[@type='checkbox']")
     public List<WebElement> chkBoxColName;  //check checkbox
 
-  @FindBy(xpath = "//*[contains(@class,'MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1')]")
-  public List<WebElement> columnSection;
-
+    @FindBy(xpath = "//*[contains(@class,'MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1')]")
+    public List<WebElement> columnSection;
 
     @FindBy(xpath = "//*[@class='MuiBox-root css-tzofp1'] //*[@data-testid='CancelOutlinedIcon']")
     public WebElement cancelIconOnTablPopUp; //click
@@ -170,13 +162,10 @@ public class ConnectionsElements {
     public List<WebElement> dqRuleNameColList;
     @FindBy(xpath = "//*[@role='gridcell' and @col-id='ConnectionName']")
     public List<WebElement> conntNameColList;
-
-//---------------------------------------
     @FindBy(css = "MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall css-1o6z5ng")
     public WebElement sltValChecksList;
 
     @FindBy(xpath = "//*[@class='MuiGrid-root MuiGrid-item MuiGrid-grid-md-8 css-zpohz8']//*[@class='MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall css-1o6z5ng']")
     public WebElement sltValChecksFieldList;
-
 
 }

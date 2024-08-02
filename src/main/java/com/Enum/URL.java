@@ -2,7 +2,7 @@ package com.Enum;
 
 public enum URL {
 
-    DQGURL;
+    NAVIGATE;
 
     public String value;
 

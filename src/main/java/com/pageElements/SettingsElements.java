@@ -8,7 +8,6 @@ import java.util.List;
 
 public class SettingsElements {
 
-    //[data-testid="NotificationsActiveOutlinedIcon"]
     @FindBy(css = "[data-testid='NotificationsActiveOutlinedIcon']")
     public WebElement notification;
 
@@ -28,9 +27,8 @@ public class SettingsElements {
     @FindBy(css = "[role='option']")
     public List<WebElement> languages;
 
-@FindBy(css = "[data-testid='DiscFullOutlinedIcon']")
-public WebElement serviceStatusIcon;
-
+    @FindBy(css = "[data-testid='DiscFullOutlinedIcon']")
+    public WebElement serviceStatusIcon;
 
     @FindBy(css = "[role='menuitem']")
     public List<WebElement> lstServices;

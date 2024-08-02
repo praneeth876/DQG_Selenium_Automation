@@ -21,72 +21,42 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 
-
 public class Hooks extends BasePage {
-   // public static WebDriver driver;
     @Before
     public void setUp() {
-
-        //ReadConfig.loadFile();
-//        Browsers browser = ReadConfig.getBrowser();
-//        System.out.println(browser);
-String browser="EDGE";
+        ReadConfig.loadFile();
+        Browsers browser = ReadConfig.getBrowser();
         switch (browser) {
-            case "EDGE" :
+            case EDGE -> {
                 WebDriverManager.edgedriver().setup();
                 driver = new EdgeDriver();
+                driver.get(Url());
                 driver.manage().window().maximize();
-                break;
-
-        case "CHROME" :
+            }
+            case CHROME -> {
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions opt = new ChromeOptions();
                 opt.addArguments("[--remote-allow-origins=*]");
                 driver = new ChromeDriver(opt);
-                break;
-
-            case "FIREFOX" :
+                driver.manage().window().maximize();
+            }
+            case FIREFOX -> {
                 WebDriverManager.firefoxdriver().driverVersion("0.34.0").setup();
                 driver = new FirefoxDriver();
-                break;
+                driver.manage().window().maximize();
             }
         }
-
-
-
-//
-//        driver.manage().window().maximize();
-//        driver.manage().deleteAllCookies();
-    //super.setUp();
-
-    @After
-    public void tearDown(Scenario scenario) throws IOException, InterruptedException {
-
-//        WebElement account=driver.findElement(By.cssSelector("[class='MuiBox-root css-i9gxme'] [data-testid='PersonIcon']"));
-//        account.click();
-//        Thread.sleep(10000);
-//        WebElement logout=driver.findElement(By.xpath("//*[text()='Logout']"));
-//        logout.click();
-//        if(scenario.isFailed()) {
-//            byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-//            File file = new File(System.getProperty("user.dir") + "\\Screenshots\\Defects.png");
-//            FileOutputStream fileOut = new FileOutputStream(file);
-//            fileOut.write(screenshot);
-//        }
-driver.close();
-
     }
 
 
-//    @Before
-//    public void setUp() {
-//        super.setUp();
-//    }
-//
-//    @After
-//    public void tearDown() {
-//        super.tearDown();
-//    }
+    public static String Url() {
+        ReadConfig.setUrl();
+        return ReadConfig.getUrl();
+    }
 
+    @After
+    public void tearDown(Scenario scenario) throws InterruptedException {
+        driver.close();
+    }
 
 }

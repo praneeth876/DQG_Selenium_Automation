@@ -14,24 +14,24 @@ Feature: Verify the functionalities of DQG tool settings
 
   @mode
   Scenario: Validate user can able to change the theme
-    And Click on mode Icon
-    Then Validate "DarkMode" theme is displayed and Check "rgba(29, 36, 60, 1)" bg color
+    When Click on mode Icon
+    And Validate "DarkMode" theme is displayed and Check "rgba(29, 36, 60, 1)" bg color
     And Click on mode Icon
     Then Validate "LightMode" theme is displayed and Check "rgba(244, 241, 255, 1)" bg color
 
   @language
   Scenario: Validate tool language is able to change
-    And Click on the user account setting dropdown
+    When Click on the user account setting dropdown
     And Select "English" language from lang dropdown
     Then Validate tool labels is displayed in selected language
 
   @logout
   Scenario: Validate user is able to logout from DQG tool
-    And Click on the user account setting dropdown
+    When Click on the user account setting dropdown
     And Click on Logout button
     Then Validate page is navigated to login page
 
   @service
   Scenario: Validate service status is up and running
-    And Click on service status icon
+    When Click on service status icon
     Then Validate services are in "Online"

@@ -3,7 +3,9 @@ package com.stepDefinitions;
 import com.baseClass.BasePage;
 import com.pages.ConnectionsPage;
 import com.pages.Settings;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 public class SettingsStepDefs {
 
@@ -15,16 +17,16 @@ public class SettingsStepDefs {
         settings=bsPage.getSettings();
     }
 
-    @Then("Click on Notifications Icon")
+    @And("Click on Notifications Icon")
     public void click_on_notifications_icon() {
         System.out.println("inside method");
         settings.clickOnNotificationsIcon();
     }
-    @Then("Click on View All notifications")
+    @And("Click on View All notifications")
     public void click_on_view_all_notifications() {
         settings.clickOnViewAllLinkText();
     }
-    @Then("Click on mode Icon")
+    @When("Click on mode Icon")
     public void click_on_mode_icon() {
         settings.clickOnThemeModeIcon();
     }
@@ -32,11 +34,11 @@ public class SettingsStepDefs {
     public void validate_theme_is_displayed_and_check_bg_color(String modeText, String bgColor) {
        settings.verifyThemeIsChanged(modeText,bgColor);
     }
-    @Then("Click on the user account setting dropdown")
+    @When("Click on the user account setting dropdown")
     public void click_on_the_user_account_setting_dropdown() {
         settings.clickOnUserAccountSetting();
     }
-    @Then("Select {string} language from lang dropdown")
+    @And("Select {string} language from lang dropdown")
     public void select_language_from_lang_dropdown(String lang) {
         settings.clickOnLanguageDropDown();
         settings.selectlanguageFromDropDown(lang);
@@ -45,7 +47,7 @@ public class SettingsStepDefs {
     public void validate_tool_labels_is_displayed_in_selected_language() {
         settings.verifySelectedLanguageIsDispalyed();
     }
-    @Then("Click on Logout button")
+    @And("Click on Logout button")
     public void click_on_logout_button() {
         settings.clickOnLogoutButton();
     }
@@ -54,7 +56,7 @@ public class SettingsStepDefs {
         settings.VerifyPageIsNavigatedToLoginPage();
     }
 
-    @Then("Click on service status icon")
+    @When("Click on service status icon")
     public void click_on_service_status_icon() {
       settings.clickOnServiceStatus();
     }
